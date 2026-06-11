@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Letters for My Bebo 🎀</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Nunito:wght@300;400;500;700&family=Quicksand:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kawaii: {
+                            bg: '#FFF8FB',
+                            softPink: '#FFEAF3',
+                            pink: '#FFD6E7',
+                            pinkDark: '#FF95BF',
+                            accent: '#D46A92'
+                        }
+                    },
+                    fontFamily: {
+                        cute: ['"Dancing Script"', 'cursive'],
+                        body: ['Nunito', 'sans-serif'],
+                        rounded: ['Quicksand', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background:
+                radial-gradient(circle at top left, #ffeaf3 0%, transparent 25%),
+                radial-gradient(circle at bottom right, #ffd6e7 0%, transparent 25%),
+                #fff8fb;
+            overflow-x: hidden;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        /* floating sparkles */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            opacity: .35;
+            animation: floatSparkle linear infinite;
+        }
+
+        @keyframes floatSparkle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        /* login */
+        .cute-card {
+            background: rgba(255, 255, 255, .88);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, .5);
+            box-shadow:
+                0 20px 45px rgba(255, 182, 193, .18);
+        }
+
+        /* title */
+        .cute-title {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* envelope */
+        .mini-env-wrapper {
+            position: relative;
+            height: 240px;
+            border-radius: 35px;
+            background:
+                linear-gradient(145deg, #ffe7f1, #ffd6e7);
+            overflow: hidden;
+            cursor: pointer;
+            transition: .35s ease;
+            box-shadow:
+                0 12px 35px rgba(255, 182, 193, .22);
+        }
+
+        .mini-env-wrapper:hover {
+            transform:
+                translateY(-12px) scale(1.03);
+        }
+
+        .ribbon-seal {
+            width: 70px;
+            height: 70px;
+            border-radius: 999px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, .08);
+            border: 4px solid #fff4f8;
+        }
+
+        /* button */
+        .cute-btn {
+            background:
+                linear-gradient(to right,
+                    #ffb6d1,
+                    #ff95bf);
+            transition: .3s ease;
+        }
+
+        .cute-btn:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 10px 30px rgba(255, 149, 191, .25);
+        }
+
+        /* modal scrapbook */
+        .glass {
+            background:
+                linear-gradient(to bottom,
+                    rgba(255, 255, 255, .96),
+                    rgba(255, 245, 248, .98));
+
+            border-radius: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 25px 50px rgba(255, 182, 193, .25);
+        }
+
+        .glass::before {
+            content: "";
+            position: absolute;
+            top: 16px;
+            left: 45px;
+            width: 100px;
+            height: 28px;
+            background:
+                rgba(255, 194, 217, .55);
+            transform: rotate(-8deg);
+            border-radius: 8px;
+        }
+
+        .glass::after {
+            content: "";
+            position: absolute;
+            top: 16px;
+            right: 45px;
+            width: 100px;
+            height: 28px;
+            background:
+                rgba(255, 194, 217, .55);
+            transform: rotate(8deg);
+            border-radius: 8px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ffd6e7;
+            border-radius: 999px;
+        }
+    </style>
+</head>
+
+<body class="text-pink-900">
+
+    <!-- sparkles -->
+    <div class="sparkle text-xl" style="left:10%; animation-duration:13s;">✨</div>
+    <div class="sparkle text-lg" style="left:25%; animation-duration:17s;">⭐</div>
+    <div class="sparkle text-xl" style="left:42%; animation-duration:12s;">✨</div>
+    <div class="sparkle text-lg" style="left:58%; animation-duration:15s;">💖</div>
+    <div class="sparkle text-xl" style="left:74%; animation-duration:18s;">✨</div>
+    <div class="sparkle text-lg" style="left:88%; animation-duration:14s;">⭐</div>
+
+    <!-- LOGIN SCREEN -->
+    <div id="auth-screen" class="fixed inset-0 z-50 flex items-center justify-center p-6">
+
+        <div class="cute-card rounded-[40px] p-10 max-w-lg w-full text-center relative overflow-hidden">
+
+            <div class="absolute top-5 left-5 text-3xl">☁️</div>
+            <div class="absolute top-5 right-5 text-3xl">🎀</div>
+            <div class="absolute bottom-5 left-8 text-3xl">🐰</div>
+            <div class="absolute bottom-5 right-8 text-3xl">🧸</div>
+
+            <h1 class="text-6xl cute-title text-pink-500 mb-3">
+                Letters for My Bebo 🎀
+            </h1>
+
+            <p class="text-pink-500 mb-8 font-medium">
+                A tiny love vault made just for you 💌
+            </p>
+
+            <div class="text-6xl mb-6">
+                💌
+            </div>
+
+            <input type="password" id="passcode" placeholder="Enter secret code for bebo 💌"
+                class="w-full rounded-full px-6 py-4 bg-pink-50 outline-none text-center focus:ring-4 focus:ring-pink-200" />
+
+            <p id="error-msg" class="text-pink-500 mt-4 opacity-0 transition duration-300">
+                Wrong code bebo 🥺 try again
+            </p>
+
+            <p class="mt-7 text-sm text-pink-400 leading-relaxed">
+                Hint: The day our little story started 🌸 <br>
+                Format: <span class="font-semibold">MMDDYYYY</span> <br>
+            </p>
+
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div id="main-content" class="hidden max-w-7xl mx-auto px-6 py-14 relative z-10">
+
+        <div class="text-center mb-14">
+
+            <div class="text-5xl mb-4">
+                ☁️ ✨ 🧸
+            </div>
+
+            <h1 class="cute-title text-7xl text-pink-500 mb-2">
+                Letters for My Bebo 🎀
+            </h1>
+
+            <p class="text-pink-400 text-lg">
+                Open whenever you miss me, need me,
+                or simply want to feel loved 💌
+            </p>
+
+            <div class="mt-4 text-3xl">
+                🐰 💖 ☁️ ✨
+            </div>
+
+        </div>
+
+        <div id="envelope-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        </div>
+
+    </div>
+    <!-- CONFIRM MODAL -->
+    <div id="confirm-modal" class="fixed inset-0 hidden z-[60] items-center justify-center p-6">
+
+        <div class="absolute inset-0 bg-pink-100/50 backdrop-blur-sm" onclick="closeConfirm()"></div>
+
+        <div id="confirm-card"
+            class="cute-card relative max-w-md w-full rounded-[40px] p-10 text-center scale-95 opacity-0 transition duration-300">
+
+            <div class="text-5xl mb-5">
+                🐰 ✨ 🧸
+            </div>
+
+            <div id="confirm-icon" class="text-7xl mb-5">
+                💌
+            </div>
+
+            <h3 class="cute-title text-4xl text-pink-500 mb-4">
+                Open this letter?
+            </h3>
+
+            <p class="text-pink-500 leading-relaxed">
+                I made this with lots of love 💖
+                Are you sure you're opening
+                this at the right moment, bebo?
+            </p>
+
+            <div class="flex gap-4 justify-center mt-8">
+
+                <button onclick="closeConfirm()" class="px-6 py-3 rounded-full bg-pink-100 text-pink-600 font-semibold">
+                    Not yet 🥺
+                </button>
+
+                <button onclick="proceedToAnimation()" class="cute-btn px-6 py-3 rounded-full text-white font-semibold">
+                    Open now 💌
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- OPENING ANIMATION -->
+    <div id="animation-modal" class="fixed inset-0 hidden z-[70] flex items-center justify-center bg-pink-50">
+
+        <div class="text-center">
+
+            <div class="text-4xl mb-4 animate-bounce">
+                ✨
+            </div>
+
+            <h3 id="animation-text" class="cute-title text-5xl text-pink-500 mb-8">
+                Preparing your letter...
+            </h3>
+
+            <div id="the-envelope" class="relative w-[300px] h-[220px] mx-auto">
+
+                <!-- envelope -->
+                <div class="absolute inset-0 rounded-[35px] bg-gradient-to-br from-pink-100 to-pink-200 shadow-xl">
+                </div>
+
+                <div class="absolute top-0 left-0 right-0 h-[110px] bg-pink-50"
+                    style="clip-path: polygon(0 0,100% 0,50% 100%);" id="envelope-flap"></div>
+
+                <div class="absolute left-4 right-4 bottom-4 h-[160px] bg-white rounded-[25px] flex items-center justify-center text-6xl shadow-md"
+                    id="big-env-icon">
+                    💌
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- LETTER MODAL -->
+    <div id="letter-modal" class="fixed inset-0 hidden z-[80] items-center justify-center p-2 sm:p-4 overflow-hidden">
+        <!-- backdrop -->
+        <div class="absolute inset-0 bg-pink-100/50 backdrop-blur-md" onclick="closeLetter()"></div>
+        <!-- modal card -->
+        <div id="letter-card"
+            class="glass relative w-full max-w-4xl h-[95dvh] sm:h-[88vh] rounded-[28px] sm:rounded-[40px] overflow-hidden flex flex-col z-10">
+            <!-- close --> <button onclick="closeLetter()"
+                class="absolute top-4 right-4 sm:top-5 sm:right-5 z-20 bg-white/80 hover:bg-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center text-pink-500 text-xl sm:text-2xl shadow-md">
+                ✕ </button> <!-- floating decor (safe positioning) -->
+            <div class="absolute top-4 left-4 sm:left-6 text-lg sm:text-3xl opacity-60 pointer-events-none z-0"> 🐰
+            </div>
+            <div class="absolute top-5 right-16 sm:right-24 text-lg sm:text-3xl opacity-60 pointer-events-none z-0">
+                ✨
+            </div>
+            <div class="absolute bottom-5 left-5 sm:left-8 text-lg sm:text-3xl opacity-60 pointer-events-none z-0">
+                🧸
+            </div>
+            <div class="absolute bottom-5 right-5 sm:right-8 text-lg sm:text-3xl opacity-60 pointer-events-none z-0">
+                ☁️
+            </div> <!-- header -->
+            <div class="shrink-0 border-b border-pink-100 pt-14 sm:pt-12 px-5 sm:px-10 pb-5 relative z-10">
+                <div class="flex gap-3 sm:gap-5 items-start">
+                    <div id="letter-sticker" class="text-4xl sm:text-6xl shrink-0"> 💌 </div>
+                    <div class="min-w-0 flex-1">
+                        <h2 id="letter-title"
+                            class="cute-title text-2xl sm:text-5xl text-pink-500 break-words leading-tight"> Letter
+                        </h2>
+                        <p class="text-pink-400 text-xs sm:text-base mt-1"> made with lots of love 💖 </p>
+                    </div>
+                </div>
+            </div> <!-- scrollable body -->
+            <div class="flex-1 overflow-y-auto px-5 sm:px-10 py-5 sm:py-8 relative z-10"
+                style=" overscroll-behavior: contain; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; ">
+                <div id="letter-body"
+                    class="text-pink-700 whitespace-pre-wrap text-[15px] sm:text-lg leading-8 sm:leading-loose pb-10">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const SECRET = '06182023';
+        let activeLetter = null;
+
+        const letters = [
+            { icon: '💌', title: '...you open this for the very first time.', content: `Hi Bebo,\n\nIto na. Opisyal na tayong mag uumpisa sa 2 years nating Long Distance Relationship. Alam nating dalawa na 2 years pa bago tayo magkikita ng personal, pero alam kong kakayanin nating dalawa.\n\nGinawa ko itong digital vault para kahit papaano ay maramdaman mo na kasama mo ako araw araw. Every time na bubuksan mo ang isang letter dito, isipin mo na kinakausap kita ng personal. Pikit ka lang at isipin mo na nakahawak ako sa kamay mo at sinasabing wag kang bibitaw.\n\nDalawang taon lang ito bebo. Napakaliit na panahon lang nito kumpara sa buong buhay na magkasama tayo. Mag partner tayo sa lahat ng bagay kaya we will make this work. Kapit lang tayo sa isa't isa okay? I believe in us. Mahal na mahal kita!` },
+            { icon: '🌸', title: '...it is June 18 (Our Anniversary).', content: `Happy Anniversary my bebo! Happy June 18!\n\nKahit magkalayo tayo ngayon ay gusto ko pa rin i-celebrate yung araw natin. Maraming salamat sa pagiging the best partner ever. Salamat kasi palagi kang nandiyan para i-support ako sa lahat ng gusto kong gawin. Mula sa pagiging dev ko sa work, hanggang sa pagpapalago natin sa business natin.\n\nSobrang taas ng respeto ko sayo at sobrang happy ako na ikaw ang naging boyfriend ko. Sana maramdaman mo sa letter na ito kung gaano kita kamahal. Sa mga susunod nating anniversary sisiguraduhin kong magkasama na tayong dalawa. I love you bebo!` },
+            { icon: '💰', title: '...nai-stress ka sa pagbabayad ng utang.', content: `Bebo, alam ko na mabigat sa pakiramdam ang pagbabayad ng utang ngayon. Nakaka stress talaga yan lalo na kung parang ang tagal matapos.\n\nPero gusto ko lang sabihin na hanga ako sa diskarte at sipag mo. Hindi lahat ng tao ay kayang humarap sa ganyang obligasyon nang ganyan ka-responsible. Konting tiis na lang, matatapos din yan at makakahinga ka na nang maluwag. Heto ang motivation mo: isipin mo na bawat bayad mo ay isang hakbang palapit sa financial freedom nating dalawa. I am so proud of you for choosing to be responsible. Andito lang ako palagi para i-cheer ka.` },
+            { icon: '✨', title: '...you need to remember why we are doing this.', content: `Bebo, baka nakalimutan mo, ginagawa natin ang lahat ng ito para sa future nating dalawa. Pagkatapos ng mga obligasyon mo at kapag naka-recover na tayo sa financial status natin, mas magiging maayos ang buhay natin.\n\nFocus lang tayo sa goal. Huwag kang panghinaan ng loob kung parang ang bagal ng usad. Sa mata ko, sobrang bilis mo nang umabante. I love you, and I am here with you every step of the way.` },
+            { icon: '📱', title: '...hindi ako maka reply agad sayo.', content: `Bebo, kung binabasa mo ito malamang naghihintay ka ng reply ko at medyo matagal na akong tahimik. I am so sorry!\n\nMalamang sobrang dami ko lang kailangan tapusin ngayon. Baka may inaayos ako na code para sa trabaho o kaya busy lang ako sa pag aayos ng mga orders natin sa craft business. Pero please wag mong isipin na nakalimutan kita.\n\nKahit nagtatrabaho ako, nasa isip kita palagi. Gusto ko lang makatapos agad para makausap na kita ng buong buo na walang iniisip na ibang gagawin. Antayin mo lang ako ha? Babawi ako agad. I love you!` },
+            { icon: '🎮', title: '...naglalaro ka ng Mobile Legends.', content: `Alam ko nagra rank game ka na naman sa Mobile Legends ngayon. Sana andiyan ako sa tabi mo para duo tayo o kaya ako yung taga support mo sa laro.\n\nEnjoy your gaming time bebo. Deserve mo mag relax at mag unwind lalo na pag galing sa stress ng buhay. Pagdating ng araw na magkasama na tayo, lalaro tayo ng ML magkatabi. Pagbutihin mo yan at wag kang magpapa tilt sa mga kakampi mo. Good luck at have fun sa laro. I-win mo yan para sakin! Labyu!` },
+            { icon: '🦦', title: '...you are stressed and overwhelmed.', content: `Hinga ng malalim bebo. Inhale, exhale. Let it all out.\n\nAlam kong sobrang dami mong iniisip ngayon. Baka pagod ka sa work o baka feeling mo pasan mo ang buong mundo. I just want to remind you kung gaano ka ka-amazing na tao. Nalagpasan mo na yung mga mas mahihirap na araw noon at kaya mo ring lagpasan ito ngayon.\n\nTake it one step at a time. Wag mong pilitin na i-solve lahat agad agad. Magpahinga ka kung kailangan. Andito lang ako palagi to listen if you want to rant. I am always on your side.` },
+            { icon: '🏳️', title: '...we just had an argument.', content: `Bebo, I am sorry kung nagkatampuhan tayo o kung nasaktan man kita. Ang hirap talaga minsan kapag sa chat o video call lang tayo nag uusap. Madalas iba ang dating o iba ang intindi.\n\nPero gusto kong ipaalala sayo na hindi nababawasan ang pagmamahal ko sayo kahit pa minsan ay hindi tayo nagkakasundo. We are a team remember? Hindi tayo magkaaway. Tayo yung magkakampi laban sa problema.\n\nUsap tayo ng maayos bebo. Babaan na natin ang pride nating dalawa. Bati na tayo please?` },
+            { icon: '🐥', title: '...you need a reminder of how much I believe in you.', content: `In case nobody has told you today, I am so incredibly proud of you.\n\nBebo, you are smart and hardworking. Alam kong kaya mong maabot lahat ng pangarap mo. Nakikita ko yung effort na binibigay mo araw araw. Nakikita ko yung dedication mo para umasenso tayo.\n\nWag kang matakot magkamali kasi part yan ng journey. Keep pushing forward. Lagi kitang i-che-cheer mula rito. Magtulungan tayong dalawa na i-achieve yung mga goals natin. I am your number one fan.` },
+            { icon: '🌙', title: '...hindi ka makatulog sa gabi.', content: `Gising ka pa rin bebo? Kung pwede lang sana kitang tabihan ngayon at haplusin yung buhok mo hanggang sa makatulog ka.\n\nSince wala ako diyan ngayon, subukan mong ipikit ang mga mata mo at balikan sa isip mo yung pinakamasayang memory nating dalawa. O kaya isipin mo kung ano yung pinakaunang gagawin natin kapag nagkita na ulit tayo. Saan tayo pupunta? Anong kakainin natin?\n\nPray ka bago matulog ha. Goodnight my love. Sweet dreams.` },
+            { icon: '💪', title: '...you are doubting yourself and your worth.', content: `Hey, stop being so hard on yourself.\n\nBebo, normal lang na panghinaan ng loob paminsan minsan. Normal lang makaramdam na parang kulang pa yung ginagawa mo pero let me tell you this, you are more than enough. Wag mong kalimutan kung gaano ka kagaling at kung gaano karaming magagandang bagay ang nagawa mo na.\n\nYou have so much potential. Tumingin ka sa salamin at sabihin mo sa sarili mo na kaya mo yan. Andito lang ako palagi to remind you of your true worth.` },
+            { icon: '💻', title: '...you feel lonely and I am too busy at work.', content: `Bebo, I am so sorry kung nagiging sobrang busy ako lately. Alam mo namang madalas ang daming tinatapos na tasks sa pagiging dev ko, tapos may mga plano pa akong i-pursue yung Masters ko sa future.\n\nPero please know this, kahit gaano pa ako ka busy sa maghapon ay ikaw pa rin ang constant na nasa isip ko. Hindi nawawala yung pagmamahal at pake ko sayo kahit pa minsan matagal akong makapag reply. Babawi ako sayo promise ko yan.` },
+            { icon: '🧸', title: '...you just need a virtual hug.', content: `Sending the tightest and warmest virtual hug directly to you!\n\nImagine me wrapping my arms around you real tight right now. Siksik ka lang sa akin bebo. Kapag pagod ka na sa mga nangyayari sa paligid mo, sumandal ka lang sa akin kahit virtually lang muna.\n\nLahat ng bigat na nararamdaman mo ay tutulungan kitang buhatin. Magiging okay din ang lahat. Always remember that my love for you is a safe place.` },
+            { icon: '🌧️', title: '...you are having a really bad day.', content: `I am so sorry na pangit ang araw mo ngayon bebo. Gusto sana kitang yakapin para mabawasan man lang kahit papaano yung stress mo.\n\nKahit anong nangyari ngayong araw, always remember na hindi ibig sabihin na bad life na agad. Isang masamang araw lang yan at matatapos din yan mamaya pagtulog mo. Huminga ka lang ng malalim. Kain ka ng comfort food mo o kaya mag laro ka muna ng ML para ma relax ka. Bukas ay panibagong araw na naman. Nandito lang ako para sayo.` },
+            { icon: '🥺', title: '...you feel jealous of other couples.', content: `Nakakita ka ba ng couple na magkasama tapos naisip mo na sana tayo din?\n\nNaiintindihan kita bebo. Ang hirap talaga kapag nakikita mo yung iba na nagde date o magkahawak ng kamay tapos tayo kailangan pa maghintay ng dalawang taon. Nakakainggit talaga minsan.\n\nPero wag kang malungkot. Darating din yung time natin. Yung araw na hindi na natin kailangan magpaalam pag uwi kasi iisang bahay na lang ang uuwian natin. Mas magiging sweet at mas matibay tayo pagdating ng panahon na yun kasi nalagpasan natin itong sobrang hirap na LDR. Tayo naman in the future.` },
+            { icon: '⏳', title: '...you are completely tired of waiting.', content: `Nakakapagod no? Yung araw araw gigising ka na puro screen lang ang kaharap mo at bibilangin mo na naman yung madaming buwan na natitira bago tayo magkita sa personal.\n\nPero bebo, let us actively choose each other every day no matter how tired we get. Ang LDR ay para lang sa mga matatapang na nagmamahal ng totoo at alam kong tayo yun. Focus muna tayo sa pag grow natin individually ngayon para handang handa tayo kapag nagkita na tayo.` },
+            { icon: '🍵', title: '...you are sick and I cannot be there.', content: `Oh no bebo. I hate that you are sick right now. Nakaka frustrate yung distansya natin kasi wala man lang akong magawa para maalagaan ka o mabilhan ka ng gamot.\n\nPlease drink your medicine on time. Stay fully hydrated and please sleep early. Wag mo muna isipin yung trabaho o yung mga problema. Magpalakas ka ha? I am praying for your fast recovery. Get well soon my love.` },
+            { icon: '🚀', title: '...you want to give up on your goals.', content: `Don't you dare quit Bebo. Hindi ko yan papayagan.\n\nAlam kong sobrang hirap na at parang wala nang nangyayari pero isipin mo kung bakit ka nag umpisa. Gusto ko pareho tayong umaangat at umaasenso sa buhay. Gustong gusto kong makita kang maging successful kasi alam kong deserve mo yun.\n\nTake a break if you are tired. Magpahinga ka pero wag na wag kang hihinto. I believe in your dreams as much as you believe in mine.` },
+            { icon: '📞', title: '...nami miss mo yung mga late night kwentuhan natin.', content: `Nami miss ko rin yung mga late night deep talks natin bebo. Yung mga pag uusap natin tungkol sa future at sa mga plano natin na minsan inaabot na tayo ng madaling araw.\n\nIsipin mo na lang yung araw na darating kung saan hindi na natin kailangan maghanap ng signal para lang mag usap. Yung pwede na tayong magkwentuhan ng personal habang nagkakape sa umaga. Let us keep working hard para mabilis nating marating yung future na yun.` },
+            { icon: '🤍', title: '...you are overthinking things again.', content: `Bebo, your brain is playing tricks on you again. Please take a step back and stop overthinking.\n\nWala kang dapat ipag alala pagdating sa relationship natin. Ako lang ito, yung Patricia mo na mahal na mahal ka at sayong sayo lang. Kung may mga insecurities o fears na pumapasok sa isip mo ngayon ay i-let go mo na yan.\n\nWhatever it is you are worrying about, let us talk about it ng kalmado. You are always safe with me.` },
+            { icon: '⏱️', title: '...we missed our scheduled video call.', content: `Bebo, I am sorry kung hindi tayo nakapag usap sa usual time natin. Baka nag extend ako sa work o may biglaang emergency lang na inasikaso kaya hindi ako naka abot.\n\nAlam kong nakakalungkot kasi ito na nga lang yung way natin para magkasama tapos na miss pa natin. Gusto kong malaman mo na bumabawi ako sa isip ko ngayon at iniisip kita. Wag ka magtampo ng sobra ha? Ipapangako kong babawi ako bukas at mas hahabaan natin ang kwentuhan natin. I love you!` },
+            { icon: '🎉', title: '...you achieved a goal big or small.', content: `CONGRATULATIONS BEBO! I AM SO PROUD OF YOU!\n\nKahit anong goal pa yan, malaki man o maliit, sobrang proud ako sayo. Nakita ko yung hirap at effort na binigay mo para ma achieve yan. Deserve na deserve mo yung success na yan.\n\nSana andiyan ako para i-hug ka ng mahigpit at para i-treat ka sa labas. Ipagdiwang mo yan bebo. You are amazing and I am so lucky to have a partner like you na masipag at determinado. Cheers!` },
+            { icon: '🎀', title: '...you feel unappreciated.', content: `I am so sorry if there are times na nararamdaman mo na hindi kita na-a-appreciate bebo. Gusto kong malinaw sayo na I notice and deeply value everything you do for us.\n\nYung patience mo at yung pag intindi mo sa magulo kong schedule ay sobrang laking tulong sakin. Na a appreciate ko lahat ng yun. Baka hindi ko lang minsan nasasabi nang madalas kasi na o overwhelm din ako sa buhay pero I am so incredibly grateful to have you.` },
+            { icon: '🌟', title: '...we finally reach our 1 year LDR mark.', content: `ONE YEAR DOWN AND ONE MORE TO GO!\n\nBebo, we officially made it to the halfway mark! Nakaka proud isipin na nalampasan natin ang isang buong taon ng LDR. Isang taon na puro video calls at tiyaga.\n\nKung nakaya natin ang unang taon, mas kayang kaya nating tapusin ang susunod. Ang lapit na natin sa finish line nung original na 2 years na hinihintay natin. Super proud ako sa ating dalawa kasi hindi tayo sumuko. I love you so much!` },
+            { icon: '💭', title: '...you need to remember why I love you.', content: `Bebo, in case nakalimutan mo, minahal kita kasi nakita ko kung gaano kabuti yung puso mo.\n\nMahal kita dahil sa patience mo sakin. Mahal kita dahil tinanggap mo ako ng buo kahit na may mga flaws ako. Mahal kita dahil you make me want to be a better person araw araw. Mahal kita dahil ikaw yung nagpapasaya sakin kahit ang layo layo natin sa isa't isa.\n\nWalang araw na hindi ko pinagpapasalamat na dumating ka sa buhay ko. You are my greatest blessing.` },
+            { icon: '✨', title: '...you are worried about our future together.', content: `The future is unknown bebo and sometimes the uncertainty can be really scary. Pero sa gitna ng lahat ng hindi natin sigurado, may isang bagay akong paninindigan at yun ay gusto kong ikaw ang makasama ko sa future.\n\nKahit anong challenges pa ang dumating sa atin, as long as we keep choosing each other ay magiging okay tayo. Pareho tayong masipag at pareho tayong may pangarap kaya magkakasama nating aabutin yun.` },
+            { icon: '🐰', title: '...you just need to smile today.', content: `Psst, isipin mo na lang kung paano ako maging clingy sayo sa personal. O kaya isipin mo yung mukha ng aso o pusa na sobrang cute na nakatingin sayo para manghingi ng pagkain.\n\nSmile ka na diyan. Ang gwapo mo kaya pag nakangiti ka. Wag mo nang masyadong pa stressin ang sarili mo. Life is too short to be grumpy all day. Sending you lots of kisses and positive energy!` },
+            { icon: '🌶️', title: '...miss mo na ang vibe dito sa Naga.', content: `Nakakamiss din yung kalmado at chill na buhay dito sa Bicol no?\n\nWag kang mag alala bebo. Pag uwi mo rito o pagkikita natin ulit, ipapasyal kita sa lahat ng paborito nating spots. Kakain tayo ng mga paborito mong pagkain at mag e enjoy tayo sa slow pace ng buhay dito na walang masyadong pressure. Hinihintay ka lang palagi ng Naga bebo, at higit sa lahat hinihintay kita ng buong puso ko dito.` },
+            { icon: '💼', title: '...you are tired of adulting.', content: `Ang hirap maging matanda no? Yung puro responsibilidad, bills, at trabaho na lang ang iniisip araw araw.\n\nOkay lang mapagod bebo. Okay lang na minsan gusto mo na lang humiga buong araw at kalimutan na may trabaho ka. Allow yourself to rest. Wag mong pilitin maging okay kung pagod ka na. Magpahinga ka muna, manood ka ng paborito mong series, at huminga ka ng malalim. Laban ulit tayo bukas pag may energy ka na.` },
+            { icon: '🥣', title: '...wala kang gana kumain o gumalaw.', content: `Bebo, please kumuha ka ng kahit anong makakain ngayon. Kahit biskwit lang o kahit konting kanin.\n\nAlam ko na may mga araw na tinatamad ka na kumilos at wala kang gana sa lahat ng bagay pero kailangan mong alagaan yung sarili mo para sakin. Ayokong magkakasakit ka lalo na at hindi kita pwedeng alagaan diyan. Please wag mong pabayaan ang sarili mo. Kumain ka na ha? I love you.` },
+            { icon: '🕯️', title: '...you are feeling burnt out.', content: `Bebo, nakikita ko na sobrang pagod na pagod ka na. Na-burn out ka na siguro sa kakatrabaho at kakaisip.\n\nYou need to pause. Hindi mo kailangang maging productive araw araw. Hindi ka robot. Valid yung pagod mo at kailangan mong bigyan ng time yung isip at katawan mo na maka recover. I-off mo muna yung phone mo o kaya matulog ka ng mahaba ngayong weekend. Proud na proud ako sa hard work mo pero please prioritize your peace of mind.` },
+            { icon: '🛌', title: '...you need motivation to get out of bed.', content: `Good morning bebo! O tanghali na ba?\n\nBangon na diyan. Alam ko na ang sarap pa matulog at ang hirap bumangon lalo na kung wala ka namang inaabangan ngayong araw. Pero isipin mo na every single day na gumigising tayo at nagtatrabaho, palapit tayo ng palapit dun sa pangarap natin na magkasama.\n\nBumangon ka na diyan, maghilamos, at mag kape. Kaya natin tapusin ang araw na ito. Laban bebo!` },
+            { icon: '🎞️', title: '...you are feeling nostalgic about our past dates.', content: `Naiisip mo ba yung mga times na magkasama tayo in person?\n\nNakakamiss yung tawa natin, yung hawak natin sa kamay ng isa't isa, at yung mga simpleng kwentuhan habang kumakain sa labas. I treasure all those memories with you bebo. Sila yung nagpapatatag sakin kapag nalulungkot ako dito.\n\nHayaan mo, madami pa tayong gagawing memories pag nagkita na ulit tayo. For now, balik balikan mo muna yung pictures natin at isipin mo na mas madami pa tayong masayang araw na pagdadaanan.` },
+            { icon: '😴', title: '...I am asleep and you miss me.', content: `Tulog na siguro ako nung binuksan mo ito.\n\nSorry kung nakatulugan kita ha? Malamang sobrang napagod lang ako sa trabaho. Pero kahit tulog ako, paniguradong ikaw ang nasa panaginip ko.\n\nWag kang masyadong magpuyat diyan ha. Matulog ka na rin para sabay tayong magising bukas at mag good morning sa isa't isa. I miss you too bebo. Goodnight and sweet dreams.` },
+            { icon: '🫂', title: '...gusto mo ng lambing pero malayo ako.', content: `Aww, gusto ng bebo ko ng lambing ngayon.\n\nKung andiyan lang talaga ako, baka hindi na ako humiwalay ng pagkakayakap sayo. Kukulitin kita at panggigigilan hanggang sa mainis ka na sa sobrang clingy ko. Hahaha.\n\nFor now, imagine mo na lang na nakasandal ako sa balikat mo habang nagce cellphone ka. Nandito lang ako palagi para sayo. I love you so much.` },
+            { icon: '🧭', title: '...you feel lost in life.', content: `Bebo, normal lang na maramdaman mo minsan na parang hindi mo alam kung saan ka papunta. Normal lang maguluhan sa buhay.\n\nKung nararamdaman mo yan ngayon, gusto kong sabihin sayo na hindi mo kailangang malaman lahat ng sagot agad agad. Okay lang na maligaw minsan kasi doon tayo natututo. Andito lang ako para samahan ka kahit saan man tayo dalhin ng buhay. We will figure this out together. Trust the process and trust yourself.` },
+            { icon: '😢', title: '...you feel like crying.', content: `Iiyak mo lang yan bebo. Wag mong pigilan.\n\nWalang masama sa pag iyak. Hindi ibig sabihin na umiiyak ka ay mahina ka na. Minsan kailangan lang talaga nating ilabas yung bigat sa dibdib natin para makahinga tayo ng maayos. Dito ka lang sakin. Iyak ka lang. Andito ako nakikinig sayo at hindi kita huhusgahan. I am sending you all the comfort and warmth right now.` },
+            { icon: '🥰', title: '...you want to know my favorite thing about you.', content: `Gusto mo bang malaman kung ano yung pinaka paborito ko sayo?\n\nAng paborito ko sayo ay yung kung paano mo ako iparamdam na safe ako sayo. Yung alam ko na hindi mo ako iiwan kahit na ang pangit pangit ng ugali ko minsan. Paborito ko yung patience mo at yung kakayahan mo na intindihin ako kahit ang gulo gulo ko.\n\nIkaw ang paborito kong tao bebo. Lahat sayo, paborito ko.` },
+            { icon: '🥺', title: '...nagtatampo ka sa akin.', content: `Bebo, I am sorry kung may nagawa ako na ikinatampo mo.\n\nAlam ko na minsan may nasasabi ako o nagagawa ako na hindi maganda at hindi ko sinasadya na saktan ka. Please talk to me kapag ready ka na. Ayokong pinapatagal natin yung mga ganitong bagay. Mahal na mahal kita at ang huling gusto kong mangyari ay ang maging dahilan ng lungkot mo. Bati na tayo please?` },
+            { icon: '🌗', title: '...we reach our 6 months LDR mark.', content: `HAPPY 6 MONTHS OF LDR BEBO!\n\nHalf a year na tayong nagtitiis sa ganitong setup! Nakakabilib na umabot tayo ng anim na buwan na puro video call at chat lang. Hindi biro yung ginagawa natin pero kinakaya natin.\n\nIsipin mo yun, nabawasan na ng anim na buwan yung kailangan nating hintayin. Palapit na tayo ng palapit sa pagtatapos ng LDR na ito. Proud ako satin! Let us keep going!` },
+            { icon: '🤝', title: '...you want to hold my hand.', content: `I know bebo. I want to hold your hand too.\n\nGusto kong hawakan yung kamay mo habang naglalakad tayo, habang nanonood ng movie, o kahit nakaupo lang tayo. Nakakamiss yung init ng kamay mo.\n\nHawakan mo muna yung sarili mong kamay ngayon tapos isipin mo na kamay ko yan. Pinapangako ko na pag nagkita tayo, hindi ko bibitawan yang kamay mo kahit na pawisan pa tayo.` },
+            { icon: '🌧️', title: '...feeling mo mag isa ka.', content: `Bebo, you are never alone. Hindi ka nag iisa sa laban mo.\n\nKahit malayo ako, kahit hindi mo ako nakikita, andito yung puso ko nakabantay sayo. Andito ako naka suporta sa lahat ng ginagawa mo. Kahit anong problema yan, dalawa tayo aayos diyan. Wag mong isipin na wala kang kasama kasi palagi mo akong kakampi. Always and forever.` },
+            { icon: '❓', title: '...you are doubting my love for you.', content: `Bebo, please erase that thought right now.\n\nWag na wag mong pagdududahan yung pagmamahal ko sayo. Hindi ako gagawa ng effort na gumawa ng scrapbook at nitong website kung hindi kita mahal nang sobra sobra. Ikaw lang yung nakikita ng mata ko at ikaw lang yung gusto kong makasama habang buhay.\n\nWala kang dapat ipag alala. Sayong sayo lang ako. I love you more than words can say.` },
+            { icon: '💸', title: '...you are stressed about money or the future.', content: `Alam ko na isa sa pinakamalaking stress natin ay ang pera at ang future nating dalawa.\n\nPero bebo, wag mong pasanin lahat ng pressure mag isa. Pareho tayong nag wowork hard. Magkasama tayo sa pag iipon at sa pagpaplano. Darating din yung time na magiging stable tayo at makukuha natin lahat ng pangarap natin na hindi na kailangan mag worry ng sobra. Unti unti lang natin aabutin lahat. Kaya natin ito.` },
+            { icon: '💌', title: '...you want to hear a random sweet thing.', content: `Gusto mo pakiligin kita ngayon?\n\nAng gwapo gwapo mo bebo. Swerte ko talaga na ikaw yung naging boyfriend ko. Kapag naiisip kita, hindi ko mapigilan na ngumiti kahit nasa harap ako ng computer nag tatrabaho. Ikaw yung nagpapagaan ng araw ko palagi. I love you bebo. Kilig ka na ba?` },
+            { icon: '📖', title: '...you just want to read something from me.', content: `Hi Bebo!\n\nWala lang, gusto mo lang pala magbasa galing sakin ngayon. Gusto ko lang sabihin na sana naging masaya ang araw mo ngayon at sana alam mo kung gaano kita ka mahal.\n\nWag mong kalimutan na uminom ng tubig at magpahinga ha? I am always here cheering for you in everything that you do. I love you endlessly.` },
+            { icon: '🗓️', title: '...1 month na lang, magkikita na talaga tayo!', content: `OMG BEBO, ISANG BUWAN NA LANG! 30 DAYS NA LANG!\n\nNagsimula tayo sa pagbibilang ng dalawang buong taon tapos ngayon 1 month na lang?! Grabe parang kailan lang natatakot tayo kung paano natin ito malalampasan pero tignan mo tayo ngayon.\n\nNai imagine ko na yung mismong araw na magkakaharap na tayo. Konting konti na lang talaga. Mag ready ka na kasi sobrang higpit ng yakap na ibibigay ko sayo.` },
+            { icon: '🥹', title: '...it is the night before we finally meet.', content: `Hindi ako makatulog sa sobrang excitement at kaba bebo. Ikaw ba?\n\nBukas, hindi na screen ng phone o laptop ang haharapin ko. Bukas totoo na. Bukas ikaw na mismo yung makikita at mahahawakan ko. Safe travels sayo ha? Mag iingat ka sa byahe. I am so incredibly proud of us for surviving this long LDR phase. See you in a few hours my love!` },
+            { icon: '✈️', title: '...you are finally standing right in front of me.', content: `Distance closed. Chapter 4 begins now.\n\nWE SURVIVED BEBO! Nalagpasan natin ang pinakamahirap na part. Nandito ka na. Wag mo na tapusin basahin ito. Ibaba mo na yung phone mo, tumingin ka sakin, at yakapin mo na ako nang mahigpit. I love you endlessly and I am never letting you go again.` }
+        ];
+
+        const authScreen =
+            document.getElementById('auth-screen');
+
+        const mainContent =
+            document.getElementById('main-content');
+
+        const passInput =
+            document.getElementById('passcode');
+
+        const errorMsg =
+            document.getElementById('error-msg');
+
+        passInput.addEventListener('keypress', function (e) {
+
+            if (e.key === 'Enter') {
+
+                if (
+                    passInput.value === SECRET ||
+                    passInput.value.toLowerCase() === 'mallow'
+                ) {
+
+                    authScreen.style.display = 'none';
+
+                    mainContent.classList.remove('hidden');
+
+                    renderEnvelopes();
+
+                } else {
+
+                    errorMsg.classList.remove('opacity-0');
+
+                    passInput.value = '';
+
+                    setTimeout(() => {
+                        errorMsg.classList.add('opacity-0');
+                    }, 2000);
+                }
+            }
+        });
+
+        function renderEnvelopes() {
+
+            const grid =
+                document.getElementById('envelope-grid');
+
+            grid.innerHTML = '';
+
+            const stickers = [
+                '🐰', '🧸', '☁️', '✨', '💖', '🌸'
+            ];
+
+            letters.forEach((letter, index) => {
+
+                const randomSticker =
+                    stickers[
+                    Math.floor(
+                        Math.random() *
+                        stickers.length
+                    )
+                    ];
+
+                const wrapper =
+                    document.createElement('div');
+
+                wrapper.className =
+                    'mini-env-wrapper p-6';
+
+                wrapper.innerHTML = `
+    <div class="absolute top-4 left-4 text-2xl">
+    ${randomSticker}
+    </div>
+    
+    <div class="absolute top-4 right-4 text-xl">
+    ✨
+    </div>
+    
+    <div class="flex flex-col justify-center items-center text-center h-full relative z-10">
+    
+    <div class="ribbon-seal mb-5">
+    ${letter.icon}
+    </div>
+    
+    <h3 class="text-pink-600 font-bold mb-2">
+    Open when...
+    </h3>
+    
+    <p class="text-pink-700 font-medium px-2">
+    ${letter.title.replace('...', '')}
+    </p>
+    
+    <button class="cute-btn mt-5 px-5 py-3 rounded-full text-white font-semibold">
+    Open me 💌
+    </button>
+    
+    </div>
+    `;
+
+                wrapper.onclick =
+                    () => requestOpenLetter(letter);
+
+                grid.appendChild(wrapper);
+
+            });
+        }
+        const confirmModal =
+            document.getElementById('confirm-modal');
+
+        const confirmCard =
+            document.getElementById('confirm-card');
+
+        const confirmIcon =
+            document.getElementById('confirm-icon');
+
+        const animationModal =
+            document.getElementById('animation-modal');
+
+        const bigEnvIcon =
+            document.getElementById('big-env-icon');
+
+        const letterModal =
+            document.getElementById('letter-modal');
+
+        const letterTitle =
+            document.getElementById('letter-title');
+
+        const letterBody =
+            document.getElementById('letter-body');
+
+        const letterSticker =
+            document.getElementById('letter-sticker');
+
+        function requestOpenLetter(letter) {
+
+            activeLetter = letter;
+
+            confirmIcon.innerText =
+                letter.icon;
+
+            confirmModal.classList.remove('hidden');
+            confirmModal.classList.add('flex');
+
+            setTimeout(() => {
+                confirmCard.classList.remove('opacity-0');
+                confirmCard.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeConfirm() {
+
+            confirmCard.classList.add('opacity-0');
+            confirmCard.classList.add('scale-95');
+
+            setTimeout(() => {
+                confirmModal.classList.add('hidden');
+                confirmModal.classList.remove('flex');
+            }, 300);
+        }
+
+        function proceedToAnimation() {
+
+            closeConfirm();
+
+            bigEnvIcon.innerText =
+                activeLetter.icon;
+
+            animationModal.classList.remove('hidden');
+
+            setTimeout(() => {
+
+                showFinalLetter();
+
+            }, 1400);
+        }
+
+        function showFinalLetter() {
+
+            letterSticker.innerText =
+                activeLetter.icon;
+
+            letterTitle.innerText =
+                `Open when ${activeLetter.title.replace('...', '')}`;
+
+            letterBody.innerText =
+                activeLetter.content;
+
+            document.body.style.overflow = 'hidden';
+
+            letterModal.classList.remove('hidden');
+            letterModal.classList.add('flex');
+
+            animationModal.classList.add('hidden');
+        }
+
+        function closeLetter() { document.body.style.overflow = ''; letterModal.classList.add('hidden'); letterModal.classList.remove('flex'); }
+    </script>
+
+</body>
+
+</html>
