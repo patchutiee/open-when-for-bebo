@@ -422,6 +422,11 @@
             { icon: '💸', title: '...you are stressed about money or the future.', content: `Alam ko na isa sa pinakamalaking stress natin ay ang pera at ang future nating dalawa.\n\nPero bebo, wag mong pasanin lahat ng pressure mag isa. Pareho tayong nag wowork hard. Magkasama tayo sa pag iipon at sa pagpaplano. Darating din yung time na magiging stable tayo at makukuha natin lahat ng pangarap natin na hindi na kailangan mag worry ng sobra. Unti unti lang natin aabutin lahat. Kaya natin ito.` },
             { icon: '💌', title: '...you want to hear a random sweet thing.', content: `Gusto mo pakiligin kita ngayon?\n\nAng gwapo gwapo mo bebo. Swerte ko talaga na ikaw yung naging boyfriend ko. Kapag naiisip kita, hindi ko mapigilan na ngumiti kahit nasa harap ako ng computer nag tatrabaho. Ikaw yung nagpapagaan ng araw ko palagi. I love you bebo. Kilig ka na ba?` },
             { icon: '📖', title: '...you just want to read something from me.', content: `Hi Bebo!\n\nWala lang, gusto mo lang pala magbasa galing sakin ngayon. Gusto ko lang sabihin na sana naging masaya ang araw mo ngayon at sana alam mo kung gaano kita ka mahal.\n\nWag mong kalimutan na uminom ng tubig at magpahinga ha? I am always here cheering for you in everything that you do. I love you endlessly.` },
+            { 
+                icon: '⏳', 
+                title: '...reaching our 2-year mark of waiting.', 
+                content: `Bebo, dalawang taon na. \n\nDalawang taon na tayong naghihintay, dalawang taon na puro screen lang ang nakikita natin sa isa't isa, at dalawang taon na puro tiis at pangungulila. Sabi ng iba ang tagal na, pero para sa akin, bawat araw na lumipas ay patunay lang kung gaano katibay ang pagmamahal natin. \n\nHindi biro ang 2 years. Marami na tayong pinagdaanan na pagsubok, marami na tayong adjustments na ginawa, at marami na tayong araw na pinili nating lumaban kahit ang hirap. Gusto kong magpasalamat sayo dahil hindi ka bumitaw. Salamat dahil kahit gaano tayo kalayo, pinili mo pa rin ako araw-araw.\n\nHindi pa man tayo nagkikita ngayon, gusto kong malaman mo na worth it ang lahat ng ito. Ang 2 years na ito ay pundasyon ng kung ano tayo. Walang distansya ang makakatalo sa atin basta't magkapit-bisig tayo. Handa akong maghintay, gaano man katagal pa ang kailangan. Mahal na mahal kita, bebo. Konting kapit na lang, makakamit din natin ang goal natin na magkasama.` 
+            },
             { icon: '🗓️', title: '...1 month na lang, magkikita na talaga tayo!', content: `OMG BEBO, ISANG BUWAN NA LANG! 30 DAYS NA LANG!\n\nNagsimula tayo sa pagbibilang ng dalawang buong taon tapos ngayon 1 month na lang?! Grabe parang kailan lang natatakot tayo kung paano natin ito malalampasan pero tignan mo tayo ngayon.\n\nNai imagine ko na yung mismong araw na magkakaharap na tayo. Konting konti na lang talaga. Mag ready ka na kasi sobrang higpit ng yakap na ibibigay ko sayo.` },
             { icon: '🥹', title: '...it is the night before we finally meet.', content: `Hindi ako makatulog sa sobrang excitement at kaba bebo. Ikaw ba?\n\nBukas, hindi na screen ng phone o laptop ang haharapin ko. Bukas totoo na. Bukas ikaw na mismo yung makikita at mahahawakan ko. Safe travels sayo ha? Mag iingat ka sa byahe. I am so incredibly proud of us for surviving this long LDR phase. See you in a few hours my love!` },
             { icon: '✈️', title: '...you are finally standing right in front of me.', content: `Distance closed. Chapter 4 begins now.\n\nWE SURVIVED BEBO! Nalagpasan natin ang pinakamahirap na part. Nandito ka na. Wag mo na tapusin basahin ito. Ibaba mo na yung phone mo, tumingin ka sakin, at yakapin mo na ako nang mahigpit. I love you endlessly and I am never letting you go again.` }
@@ -467,70 +472,7 @@
             }
         });
 
-        function renderEnvelopes() {
-
-            const grid =
-                document.getElementById('envelope-grid');
-
-            grid.innerHTML = '';
-
-            const stickers = [
-                '🐰', '🧸', '☁️', '✨', '💖', '🌸'
-            ];
-
-            letters.forEach((letter, index) => {
-
-                const randomSticker =
-                    stickers[
-                    Math.floor(
-                        Math.random() *
-                        stickers.length
-                    )
-                    ];
-
-                const wrapper =
-                    document.createElement('div');
-
-                wrapper.className =
-                    'mini-env-wrapper p-6';
-
-                wrapper.innerHTML = `
-    <div class="absolute top-4 left-4 text-2xl">
-    ${randomSticker}
-    </div>
-    
-    <div class="absolute top-4 right-4 text-xl">
-    ✨
-    </div>
-    
-    <div class="flex flex-col justify-center items-center text-center h-full relative z-10">
-    
-    <div class="ribbon-seal mb-5">
-    ${letter.icon}
-    </div>
-    
-    <h3 class="text-pink-600 font-bold mb-2">
-    Open when...
-    </h3>
-    
-    <p class="text-pink-700 font-medium px-2">
-    ${letter.title.replace('...', '')}
-    </p>
-    
-    <button class="cute-btn mt-5 px-5 py-3 rounded-full text-white font-semibold">
-    Open me 💌
-    </button>
-    
-    </div>
-    `;
-
-                wrapper.onclick =
-                    () => requestOpenLetter(letter);
-
-                grid.appendChild(wrapper);
-
-            });
-        }
+        function renderEnvelopes() { const grid = document.getElementById('envelope-grid'); grid.innerHTML = ''; const stickers = [ '🐰', '🧸', '☁️', '✨', '💖', '🌸' ]; letters.forEach((letter) => { const randomSticker = stickers[ Math.floor( Math.random() * stickers.length ) ]; const wrapper = document.createElement('div'); wrapper.className = 'cursor-pointer transition duration-300 hover:-translate-y-2 hover:scale-[1.02]'; wrapper.innerHTML = ` <div class="relative h-[230px] max-w-[320px] mx-auto"> <!-- paper peeking --> <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[82%] h-[110px] bg-white rounded-t-[24px] shadow-md flex items-center justify-center text-4xl z-0" > ${letter.icon} </div> <!-- envelope --> <div class="absolute bottom-0 w-full h-[180px] rounded-[30px] bg-gradient-to-br from-pink-100 to-pink-200 shadow-xl overflow-hidden" > <!-- top flap --> <div class="absolute top-0 left-0 w-full h-[90px] bg-pink-50 z-10" style="clip-path: polygon(0 0, 100% 0, 50% 100%);" ></div> <!-- sticker --> <div class="absolute top-4 left-4 text-xl opacity-70 z-20" > ${randomSticker} </div> <!-- wax seal --> <div class="absolute top-[52px] left-1/2 -translate-x-1/2 z-20 w-[58px] h-[58px] rounded-full bg-white border-[4px] border-pink-100 shadow-lg flex items-center justify-center text-2xl" > 💌 </div> <!-- title --> <div class="absolute bottom-5 left-0 right-0 px-5 text-center z-20" > <p class="text-pink-700 font-semibold text-sm leading-5" > ${letter.title.replace('...', '')} </p> </div> </div> </div> `; wrapper.onclick = () => requestOpenLetter(letter); grid.appendChild(wrapper); }); }
         const confirmModal =
             document.getElementById('confirm-modal');
 
